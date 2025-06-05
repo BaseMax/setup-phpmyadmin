@@ -76,7 +76,7 @@ $baseFolder = explode('/', $firstEntry)[0];
 $sourcePath = "$tempDir/$baseFolder";
 
 logMsg("Extracting ZIP to temporary directory...");
-$zip->extractTo($pmaDir);
+$zip->extractTo($tempDir);
 $zip->close();
 
 // --- Step 4: Copy extracted files into 'pma/' ---
