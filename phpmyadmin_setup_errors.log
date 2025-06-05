@@ -1,0 +1,11 @@
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Config/Forms/Setup): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Config/Forms/User): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Config/Forms): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Config): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Controllers/Table/Partition): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Controllers/Table): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes/Controllers): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries/classes): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:32 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages/libraries): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:34 UTC] PHP Warning:  rmdir(temp_pma_extract/phpMyAdmin-5.2.2-all-languages): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31
+[05-Jun-2025 20:24:34 UTC] PHP Warning:  rmdir(temp_pma_extract): Directory not empty in C:\Users\MAX\setup-phpmyadmin\setup-phpmyadmin.php on line 31

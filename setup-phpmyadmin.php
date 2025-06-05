@@ -23,12 +23,22 @@ function logMsg($msg) {
 function deleteDir($dir) {
     if (!file_exists($dir)) return;
 
-    foreach (array_diff(scandir($dir), ['.', '..']) as $file) {
-        $path = "$dir/$file";
-        is_dir($path) ? deleteDir($path) : unlink($path);
+    $items = array_diff(scandir($dir), ['.', '..']);
+    foreach ($items as $item) {
+        $path = "$dir/$item";
+
+        if (is_dir($path)) {
+            deleteDir($path);
+        } else {
+            if (!@unlink($path)) {
+                logMsg("⚠️ Failed to delete file: $path");
+            }
+        }
     }
-    
-    rmdir($dir);
+
+    if (!@rmdir($dir)) {
+        logMsg("⚠️ Failed to remove directory: $dir");
+    }
 }
 
 function safeMkdir($dir, $permissions = 0755) {
@@ -55,6 +65,16 @@ file_put_contents($zipFile, $download);
 // --- Step 2: Create necessary directories ---
 safeMkdir($pmaDir);
 safeMkdir($tempDir);
+
+if (!extension_loaded('zip')) {
+    println("❌ PHP zip extension is not loaded.");
+    exit(1);
+}
+
+if (!class_exists('ZipArchive')) {
+    println("❌ PHP Zip extension is not installed or enabled.");
+    exit(1);
+}
 
 // --- Step 3: Extract zip to temp ---
 $zip = new ZipArchive();
