@@ -1,0 +1,6 @@
+*.zip
+phpMyAdmin-*
+phpMyAdmin-5.2.2-all-languages
+temp_pma_extract/
+pma
+phpMyAdmin

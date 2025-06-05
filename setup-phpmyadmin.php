@@ -1,15 +1,25 @@
 <?php
 // --- Helper Functions ---
+function isCli() {
+    return (php_sapi_name() === 'cli' || defined('STDIN'));
+}
+
+function println($msg) {
+    echo $msg . (isCli() ? "\n" : "<br>\n");
+}
+
 function logMsg($msg) {
-    echo '[' . date('H:i:s') . "] $msg\n";
+    println('[' . date('H:i:s') . "] $msg");
 }
 
 function deleteDir($dir) {
     if (!file_exists($dir)) return;
+
     foreach (array_diff(scandir($dir), ['.', '..']) as $file) {
         $path = "$dir/$file";
         is_dir($path) ? deleteDir($path) : unlink($path);
     }
+    
     rmdir($dir);
 }
 
@@ -29,7 +39,8 @@ $tempDir = 'temp_pma_extract';
 logMsg("Downloading phpMyAdmin...");
 $download = file_get_contents($downloadUrl);
 if ($download === false) {
-    die("❌ Failed to download from $downloadUrl\n");
+    println("❌ Failed to download from $downloadUrl");
+    exit(1);
 }
 file_put_contents($zipFile, $download);
 
@@ -40,18 +51,25 @@ safeMkdir($tempDir);
 // --- Step 3: Extract zip to temp ---
 $zip = new ZipArchive();
 if ($zip->open($zipFile) !== TRUE) {
-    unlink($zipFile);
-    die("❌ Failed to open ZIP file.\n");
+    @unlink($zipFile);
+    println("❌ Failed to open ZIP file.");
+    exit(1);
 }
-
-logMsg("Extracting ZIP to temporary directory...");
-$zip->extractTo($tempDir);
-$zip->close();
 
 // Detect top-level folder inside ZIP
 $firstEntry = $zip->getNameIndex(0);
+if ($firstEntry === false) {
+    println("❌ Failed to read ZIP entries.");
+    @unlink($zipFile);
+    exit(1);
+}
+
 $baseFolder = explode('/', $firstEntry)[0];
 $sourcePath = "$tempDir/$baseFolder";
+
+logMsg("Extracting ZIP to temporary directory...");
+$zip->extractTo($pmaDir);
+$zip->close();
 
 // --- Step 4: Copy extracted files into 'pma/' ---
 logMsg("Moving files to '$pmaDir/'...");
@@ -62,7 +80,9 @@ $iterator = new RecursiveIteratorIterator(
 );
 
 foreach ($iterator as $item) {
-    $targetPath = $pmaDir . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
+    $subPath = $iterator->getInnerIterator()->getSubPathName();
+    $targetPath = $pmaDir . DIRECTORY_SEPARATOR . $subPath;
+
     if ($item->isDir()) {
         safeMkdir($targetPath);
     } else {
