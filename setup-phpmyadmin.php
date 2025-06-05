@@ -1,4 +1,13 @@
 <?php
+/*
+ *
+ * @Name: setup-phpmyadmin
+ * @Author: Max Base
+ * @Date: 06/06/2025
+ * @Repository: https://github.com/BaseMax/setup-phpmyadmin
+ *
+*/
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
